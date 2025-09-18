@@ -1,6 +1,6 @@
 # Admin Wizard
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+<a alt="Angular logo" href="https://angular.dev" target="_blank" rel="noreferrer"><img src="https://angular.dev/assets/images/press-kit/angular_wordmark_gradient.png" width="120"></a>
 
 Admin Wizard is a modern [Angular](https://github.com/angular/angular-cli) application built with the latest technologies and best practices. This project provides a multi-step form (wizard) interface for collecting administrative data (e.g., personal, address, and professional information).
 
