@@ -1,82 +1,77 @@
-# AdminWizard
+# Admin Wizard
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+Admin Wizard is a modern [Angular](https://github.com/angular/angular-cli) application built with the latest technologies and best practices. This project provides a multi-step form (wizard) interface for collecting administrative data (e.g., personal, address, and professional information).
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+## Tech Stack
 
-## Finish your CI setup
+- **Framework**: Angular 20 with SSR/SSG support
+- **Monorepo**: Nx v21.5.2 (integrated)
+- **Bundler**: esbuild
+- **Styling**: SCSS
+- **Testing**: Jest (unit) + Cypress (e2e)
+<!-- - **CI/CD**: Azure DevOps -->
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/YWsWauaLbP)
 
+## Getting Started
 
-## Run tasks
-
-To run the dev server for your app, use:
-
+### Development Server
 ```sh
 npx nx serve admin-wizard
 ```
 
-To create a production bundle:
-
+### Build
 ```sh
 npx nx build admin-wizard
 ```
 
-To see all available targets to run for a project, run:
-
+### Testing
 ```sh
-npx nx show project admin-wizard
+# Unit tests
+npx nx test admin-wizard
+
+# E2E tests
+npx nx e2e admin-wizard-e2e
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
-
+### Linting
 ```sh
-npx nx g @nx/angular:app demo
+npx nx lint admin-wizard
 ```
 
-To generate a new library, use:
+## Project Structure
 
-```sh
-npx nx g @nx/angular:lib mylib
+This is an integrated Nx monorepo with the following structure:
+
+```
+admin-wizard/
+├── apps/
+│   └── admin-wizard/          # Main Angular application
+├── libs/                      # Shared libraries (when created)
+└── tools/                     # Build tools and scripts
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+## Features
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- Server-Side Rendering (SSR) and Static Site Generation (SSG)
+- Modern Angular with standalone components
+- SCSS styling with responsive design
+- Comprehensive testing setup
+<!-- - Azure DevOps CI/CD integration -->
 
+## Development Tools
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### Nx Console
+Install [Nx Console](https://nx.dev/getting-started/editor-setup) for VSCode or IntelliJ to enhance your development experience with visual task running and code generation.
 
-## Install Nx Console
+### Nx Graph
+Visualize your project dependencies:
+```sh
+npx nx graph
+```
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+## Resources
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [Angular Documentation](https://angular.dev)
+<!-- - [Azure DevOps](https://azure.microsoft.com/en-us/services/devops/) -->
