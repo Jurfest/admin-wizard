@@ -1,9 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-nx-welcome',
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule, MatDividerModule, MatIconModule],
   template: `
     <!--
      * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -751,6 +754,29 @@ import { CommonModule } from '@angular/common';
             </div>
           </div>
         </div>
+
+        <div>
+          <section>
+            <div class="example-label">Filled</div>
+            <div class="example-button-row">
+              <button matButton="filled">Basic</button>
+              <button matButton="filled" disabled>Disabled</button>
+              <a
+                matButton="filled"
+                href="https://www.google.com/"
+                target="_blank"
+                >Link</a
+              >
+            </div>
+          </section>
+        </div>
+
+        <div>
+          <h1 class="text-3xl font-bold underline bg-green-600">
+            Hello world!
+          </h1>
+        </div>
+
         <!--  COMMANDS  -->
         <div id="commands" class="rounded shadow">
           <h2>Next steps</h2>
@@ -773,11 +799,11 @@ import { CommonModule } from '@angular/common';
               Build, test and lint your app
             </summary>
             <pre><span># Build</span>
-nx build 
+nx build
 <span># Test</span>
-nx test 
+nx test
 <span># Lint</span>
-nx lint 
+nx lint
 <span># Run them together!</span>
 nx run-many -t build test lint</pre>
           </details>
