@@ -1,0 +1,2 @@
+npx pretty-quick --staged
+npx nx affected -t lint

@@ -28,7 +28,8 @@
     "gen:component": "nx g @nx/angular:component",
     "gen:service": "nx g @nx/angular:service",
     "precommit": "nx affected -t lint test",
-    "ci": "nx affected -t lint test build e2e"
+    "ci": "nx affected -t lint test build e2e",
+    "prepare": "husky"
   },
   "private": true,
   "dependencies": {
@@ -87,6 +88,10 @@
     "ts-jest": "^29.4.0",
     "ts-node": "10.9.1",
     "tslib": "^2.3.0",
-    "typescript": "~5.9.2"
+    "typescript": "~5.9.2",
+    "husky": "^9.1.7",
+    "pretty-quick": "^4.0.0",
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.17.0"
   }
 }
