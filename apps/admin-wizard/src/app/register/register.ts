@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  ViewChild,
+  viewChild,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -45,7 +45,7 @@ import { InputComponent, Button } from '@admin-wizard/ui-design-system';
 export class Register {
   private fb = inject(FormBuilder);
 
-  @ViewChild('stepper') stepper!: MatStepper;
+  stepper = viewChild.required<MatStepper>('stepper');
 
   personalInfoForm: FormGroup = this.fb.group({
     fullName: ['', [Validators.required, Validators.minLength(2)]],
@@ -75,11 +75,11 @@ export class Register {
   });
 
   nextStep(): void {
-    this.stepper.next();
+    this.stepper().next();
   }
 
   previousStep(): void {
-    this.stepper.previous();
+    this.stepper().previous();
   }
 
   onSubmit(): void {
