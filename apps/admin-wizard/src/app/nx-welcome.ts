@@ -1,12 +1,19 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Button } from '@admin-wizard/ui-design-system';
 import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDividerModule } from '@angular/material/divider';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-nx-welcome',
-  imports: [CommonModule, MatButtonModule, MatDividerModule, MatIconModule],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatIconModule,
+    Button,
+  ],
   template: `
     <!--
      * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -778,6 +785,12 @@ import { MatButtonModule } from '@angular/material/button';
           <h2 class="font-bold bg-moss">Custom colors</h2>
         </div>
 
+        <div>
+          <lib-button (buttonClickEvent)="clickLogger()"
+            >Voltar ao início</lib-button
+          >
+        </div>
+
         <!--  COMMANDS  -->
         <div id="commands" class="rounded shadow">
           <h2>Next steps</h2>
@@ -893,4 +906,8 @@ nx g &#64;nx/angular:component ui/src/lib/button</pre>
   styles: [],
   encapsulation: ViewEncapsulation.None,
 })
-export class NxWelcome {}
+export class NxWelcome {
+  clickLogger(): void {
+    console.log('click');
+  }
+}
