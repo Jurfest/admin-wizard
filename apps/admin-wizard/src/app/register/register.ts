@@ -29,6 +29,7 @@ import { InputComponent, Button } from '@admin-wizard/ui-design-system';
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    InputComponent,
   ],
   templateUrl: './register.html',
   styleUrl: './register.scss',

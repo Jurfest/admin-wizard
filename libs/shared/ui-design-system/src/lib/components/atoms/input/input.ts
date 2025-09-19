@@ -64,7 +64,7 @@ type OnTouch = () => void;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputComponent {
-  inputType = input<InputType>(InputType.text);
+  inputType = input<InputType | keyof typeof InputType>(InputType.text);
   placeholder = input<string>('');
   label = input<string>('Pesquisar');
 
