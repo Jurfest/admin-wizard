@@ -1,8 +1,11 @@
-<img
-  ngSrc="./logo.svg"
-  alt="Admin Wizard Logo"
-  width="64"
-  height="64"
-  class="solar-punk-logo"
-  priority
-/>
+<div class="logo-container" (click)="onLogoClick()">
+  <img
+    ngSrc="./logo.svg"
+    alt="Admin Wizard Logo"
+    width="64"
+    height="64"
+    class="solar-punk-logo"
+    priority
+  />
+  <h1 class="logo-title">{{title()}}</h1>
+</div>

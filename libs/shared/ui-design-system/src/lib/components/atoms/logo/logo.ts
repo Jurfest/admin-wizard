@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
@@ -8,4 +13,11 @@ import { NgOptimizedImage } from '@angular/common';
   styleUrl: './logo.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Logo {}
+export class Logo {
+  title = input<string>('Admin Wizard');
+  logoClick = output<void>();
+
+  onLogoClick(): void {
+    this.logoClick.emit();
+  }
+}
