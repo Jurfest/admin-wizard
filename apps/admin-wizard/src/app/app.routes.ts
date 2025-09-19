@@ -1,3 +1,23 @@
 import { Route } from '@angular/router';
 
-export const appRoutes: Route[] = [];
+import { Register } from './register/register';
+
+export const appRoutes: Route[] = [
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home',
+  },
+  {
+    path: 'home',
+    component: Register,
+  },
+  {
+    path: 'summary',
+    loadComponent: () => import('./summary/summary'),
+  },
+  {
+    path: '**',
+    redirectTo: 'home',
+  },
+];
