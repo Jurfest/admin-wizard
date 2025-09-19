@@ -1,9 +1,9 @@
 <div class="register-container">
   <h2 class="title">Registro</h2>
 
-  <mat-stepper linear #stepper>
+  <mat-stepper [linear]="false" #stepper>
     <mat-step [stepControl]="personalInfoForm">
-      <form [formGroup]="personalInfoForm">
+      <form [formGroup]="personalInfoForm" class="mt-4">
         <ng-template matStepLabel>Informações Pessoais</ng-template>
 
         <lib-input
@@ -44,13 +44,13 @@
         ></lib-input>
 
         <div>
-          <button mat-button matStepperNext>Próximo</button>
+          <lib-button (buttonClickEvent)="nextStep()">Próximo</lib-button>
         </div>
       </form>
     </mat-step>
 
     <mat-step [stepControl]="residentialInfoForm">
-      <form [formGroup]="residentialInfoForm">
+      <form [formGroup]="residentialInfoForm" class="mt-4">
         <ng-template matStepLabel>Informações Residenciais</ng-template>
 
         <lib-input
@@ -84,14 +84,14 @@
         ></lib-input>
 
         <div>
-          <button mat-button matStepperPrevious>Voltar</button>
-          <button mat-button matStepperNext>Próximo</button>
+          <lib-button (buttonClickEvent)="previousStep()">Voltar</lib-button>
+          <lib-button (buttonClickEvent)="nextStep()">Próximo</lib-button>
         </div>
       </form>
     </mat-step>
 
     <mat-step [stepControl]="professionalInfoForm">
-      <form [formGroup]="professionalInfoForm">
+      <form [formGroup]="professionalInfoForm" class="mt-4">
         <ng-template matStepLabel>Informações Profissionais</ng-template>
 
         <lib-input
@@ -114,8 +114,8 @@
         ></lib-input>
 
         <div>
-          <button mat-button matStepperPrevious>Voltar</button>
-          <button mat-button (click)="onSubmit()">Enviar</button>
+          <lib-button (buttonClickEvent)="previousStep()">Voltar</lib-button>
+          <lib-button (buttonClickEvent)="onSubmit()">Enviar</lib-button>
         </div>
       </form>
     </mat-step>

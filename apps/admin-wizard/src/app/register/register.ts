@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  ViewChild,
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -14,6 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatStepper } from '@angular/material/stepper';
 import { InputComponent, Button } from '@admin-wizard/ui-design-system';
 
 @Component({
@@ -30,6 +36,7 @@ import { InputComponent, Button } from '@admin-wizard/ui-design-system';
     MatDatepickerModule,
     MatNativeDateModule,
     InputComponent,
+    Button,
   ],
   templateUrl: './register.html',
   styleUrl: './register.scss',
@@ -37,6 +44,8 @@ import { InputComponent, Button } from '@admin-wizard/ui-design-system';
 })
 export class Register {
   private fb = inject(FormBuilder);
+
+  @ViewChild('stepper') stepper!: MatStepper;
 
   personalInfoForm: FormGroup = this.fb.group({
     fullName: ['', [Validators.required, Validators.minLength(2)]],
@@ -64,6 +73,14 @@ export class Register {
     company: ['', Validators.required],
     salary: ['', [Validators.required, Validators.min(0)]],
   });
+
+  nextStep(): void {
+    this.stepper.next();
+  }
+
+  previousStep(): void {
+    this.stepper.previous();
+  }
 
   onSubmit(): void {
     if (
