@@ -21,7 +21,10 @@
             "input": "apps/admin-wizard/public"
           }
         ],
-        "styles": ["apps/admin-wizard/src/styles.scss"],
+        "styles": [
+          "apps/admin-wizard/src/styles.scss",
+          "scss/_global-styles.scss"
+        ],
         "server": "apps/admin-wizard/src/main.server.ts",
         "ssr": {
           "entry": "apps/admin-wizard/src/server.ts"

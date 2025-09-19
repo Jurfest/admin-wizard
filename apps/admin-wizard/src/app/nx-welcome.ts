@@ -775,6 +775,7 @@ import { MatButtonModule } from '@angular/material/button';
           <h1 class="text-3xl font-bold underline bg-green-600">
             Hello world!
           </h1>
+          <h2 class="font-bold bg-moss">Custom colors</h2>
         </div>
 
         <!--  COMMANDS  -->
