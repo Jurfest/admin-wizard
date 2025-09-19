@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { InputComponent } from '@admin-wizard/ui-design-system';
+import { InputComponent, Button, Logo } from '@admin-wizard/ui-design-system';
 
 @Component({
   selector: 'app-register',
-  imports: [InputComponent],
+  imports: [InputComponent, Button, Logo],
   templateUrl: './register.html',
   styleUrl: './register.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
