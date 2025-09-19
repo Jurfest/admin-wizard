@@ -1,8 +1,9 @@
+import { Navbar } from '@admin-wizard/ui-design-system';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  imports: [RouterModule],
+  imports: [RouterModule, Navbar],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.scss',
