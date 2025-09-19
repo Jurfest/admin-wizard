@@ -5,10 +5,11 @@ import {
   output,
 } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+import { MatRippleModule } from '@angular/material/core';
 
 @Component({
   selector: 'lib-logo',
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, MatRippleModule],
   templateUrl: './logo.html',
   styleUrl: './logo.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
