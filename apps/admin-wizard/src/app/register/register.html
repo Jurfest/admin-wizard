@@ -1,3 +1,209 @@
-<lib-input />
+<div class="register-container">
+  <h2 class="title">Registro</h2>
 
-<lib-button> Voltar </lib-button>
+  <mat-stepper linear #stepper>
+    <mat-step [stepControl]="personalInfoForm">
+      <form [formGroup]="personalInfoForm">
+        <ng-template matStepLabel>Informações Pessoais</ng-template>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Full Name</mat-label>
+          <input
+            matInput
+            formControlName="fullName"
+            placeholder="Enter your full name"
+            required
+          />
+          @if (personalInfoForm.get('fullName')?.hasError('required')) {
+          <mat-error>Full name is required</mat-error>
+          } @if (personalInfoForm.get('fullName')?.hasError('minlength')) {
+          <mat-error>Name must be at least 2 characters</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Date of Birth</mat-label>
+          <input
+            matInput
+            [matDatepicker]="dobPicker"
+            formControlName="dateOfBirth"
+            required
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="dobPicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #dobPicker></mat-datepicker>
+          @if (personalInfoForm.get('dateOfBirth')?.hasError('required')) {
+          <mat-error>Date of birth is required</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>CPF</mat-label>
+          <input
+            matInput
+            formControlName="cpf"
+            placeholder="000.000.000-00"
+            required
+          />
+          @if (personalInfoForm.get('cpf')?.hasError('required')) {
+          <mat-error>CPF is required</mat-error>
+          } @if (personalInfoForm.get('cpf')?.hasError('pattern')) {
+          <mat-error>Invalid CPF format</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Phone</mat-label>
+          <input
+            matInput
+            formControlName="phone"
+            placeholder="(00) 00000-0000"
+            required
+          />
+          @if (personalInfoForm.get('phone')?.hasError('required')) {
+          <mat-error>Phone is required</mat-error>
+          } @if (personalInfoForm.get('phone')?.hasError('pattern')) {
+          <mat-error>Invalid phone format</mat-error>
+          }
+        </mat-form-field>
+
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="residentialInfoForm">
+      <form [formGroup]="residentialInfoForm">
+        <ng-template matStepLabel>Informações Residenciais</ng-template>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Address</mat-label>
+          <input
+            matInput
+            formControlName="address"
+            placeholder="Enter your address"
+            required
+          />
+          @if (residentialInfoForm.get('address')?.hasError('required')) {
+          <mat-error>Address is required</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Neighborhood</mat-label>
+          <input
+            matInput
+            formControlName="neighborhood"
+            placeholder="Enter your neighborhood"
+            required
+          />
+          @if (residentialInfoForm.get('neighborhood')?.hasError('required')) {
+          <mat-error>Neighborhood is required</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>ZIP Code</mat-label>
+          <input
+            matInput
+            formControlName="zipCode"
+            placeholder="00000-000"
+            required
+          />
+          @if (residentialInfoForm.get('zipCode')?.hasError('required')) {
+          <mat-error>ZIP code is required</mat-error>
+          } @if (residentialInfoForm.get('zipCode')?.hasError('pattern')) {
+          <mat-error>Invalid ZIP code format</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>City</mat-label>
+          <input
+            matInput
+            formControlName="city"
+            placeholder="Enter your city"
+            required
+          />
+          @if (residentialInfoForm.get('city')?.hasError('required')) {
+          <mat-error>City is required</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>State</mat-label>
+          <input
+            matInput
+            formControlName="state"
+            placeholder="Enter your state"
+            required
+          />
+          @if (residentialInfoForm.get('state')?.hasError('required')) {
+          <mat-error>State is required</mat-error>
+          }
+        </mat-form-field>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="professionalInfoForm">
+      <form [formGroup]="professionalInfoForm">
+        <ng-template matStepLabel>Informações Profissionais</ng-template>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Profession</mat-label>
+          <input
+            matInput
+            formControlName="profession"
+            placeholder="Enter your profession"
+            required
+          />
+          @if (professionalInfoForm.get('profession')?.hasError('required')) {
+          <mat-error>Profession is required</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Company</mat-label>
+          <input
+            matInput
+            formControlName="company"
+            placeholder="Enter your company"
+            required
+          />
+          @if (professionalInfoForm.get('company')?.hasError('required')) {
+          <mat-error>Company is required</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Salary</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="salary"
+            placeholder="Enter your salary"
+            required
+          />
+          @if (professionalInfoForm.get('salary')?.hasError('required')) {
+          <mat-error>Salary is required</mat-error>
+          } @if (professionalInfoForm.get('salary')?.hasError('min')) {
+          <mat-error>Salary must be greater than 0</mat-error>
+          }
+        </mat-form-field>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="onSubmit()">Submit</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-stepper>
+</div>
