@@ -1,0 +1,18 @@
+<mat-form-field
+  class="search-form-field mb-0 md:w-auto"
+  appearance="outline"
+  [class.has-text]="value"
+  subscriptSizing="dynamic"
+>
+  <mat-label class="-tracking-0.02em">{{ label() }}</mat-label>
+  <input
+    matInput
+    [type]="inputType()"
+    [placeholder]="placeholder()"
+    [(ngModel)]="value"
+    class="input-field"
+    #inputModel="ngModel"
+    (ngModelChange)="onChange($event)"
+    (blur)="onTouch()"
+  />
+</mat-form-field>
