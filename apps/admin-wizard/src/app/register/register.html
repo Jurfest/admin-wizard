@@ -6,11 +6,20 @@
       <form [formGroup]="personalInfoForm" class="mt-4">
         <ng-template matStepLabel>Informações Pessoais</ng-template>
 
-        <lib-input
-          label="Nome Completo"
-          placeholder="Digite seu nome completo"
-          formControlName="fullName"
-        ></lib-input>
+        <mat-form-field appearance="outline">
+          <mat-label>Nome Completo</mat-label>
+          <input
+            matInput
+            placeholder="Digite seu nome completo"
+            formControlName="fullName"
+            required
+          />
+          @if (personalInfoForm.get('fullName')?.hasError('required')) {
+          <mat-error>Nome completo é obrigatório</mat-error>
+          } @if (personalInfoForm.get('fullName')?.hasError('minlength')) {
+          <mat-error>Nome completo deve ter pelo menos 2 caracteres</mat-error>
+          }
+        </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Data de Nascimento</mat-label>
@@ -30,18 +39,36 @@
           }
         </mat-form-field>
 
-        <lib-input
-          label="CPF"
-          placeholder="000.000.000-00"
-          formControlName="cpf"
-        ></lib-input>
+        <mat-form-field appearance="outline">
+          <mat-label>CPF</mat-label>
+          <input
+            matInput
+            placeholder="000.000.000-00"
+            formControlName="cpf"
+            required
+          />
+          @if (personalInfoForm.get('cpf')?.hasError('required')) {
+          <mat-error>CPF é obrigatório</mat-error>
+          } @if (personalInfoForm.get('cpf')?.hasError('pattern')) {
+          <mat-error>CPF tem formato inválido</mat-error>
+          }
+        </mat-form-field>
 
-        <lib-input
-          inputType="tel"
-          label="Telefone"
-          placeholder="(00) 00000-0000"
-          formControlName="phone"
-        ></lib-input>
+        <mat-form-field appearance="outline">
+          <mat-label>Telefone</mat-label>
+          <input
+            matInput
+            type="tel"
+            placeholder="(00) 00000-0000"
+            formControlName="phone"
+            required
+          />
+          @if (personalInfoForm.get('phone')?.hasError('required')) {
+          <mat-error>Telefone é obrigatório</mat-error>
+          } @if (personalInfoForm.get('phone')?.hasError('pattern')) {
+          <mat-error>Telefone tem formato inválido</mat-error>
+          }
+        </mat-form-field>
 
         <div>
           <lib-button (buttonClickEvent)="nextStep()">Próximo</lib-button>
@@ -53,38 +80,77 @@
       <form [formGroup]="residentialInfoForm" class="mt-4">
         <ng-template matStepLabel>Informações Residenciais</ng-template>
 
-        <lib-input
-          label="Endereço"
-          placeholder="Digite seu endereço"
-          formControlName="address"
-        ></lib-input>
+        <mat-form-field appearance="outline">
+          <mat-label>Endereço</mat-label>
+          <input
+            matInput
+            placeholder="Digite seu endereço"
+            formControlName="address"
+          />
+          @if (getErrorMessage(residentialInfoForm, 'address')) {
+          <mat-error
+            >{{ getErrorMessage(residentialInfoForm, 'address') }}</mat-error
+          >
+          }
+        </mat-form-field>
 
-        <lib-input
-          label="Bairro"
-          placeholder="Digite seu bairro"
-          formControlName="neighborhood"
-        ></lib-input>
+        <mat-form-field appearance="outline">
+          <mat-label>Bairro</mat-label>
+          <input
+            matInput
+            placeholder="Digite seu bairro"
+            formControlName="neighborhood"
+          />
+          @if (getErrorMessage(residentialInfoForm, 'neighborhood')) {
+          <mat-error
+            >{{ getErrorMessage(residentialInfoForm, 'neighborhood')
+            }}</mat-error
+          >
+          }
+        </mat-form-field>
 
-        <lib-input
-          label="CEP"
-          placeholder="00000-000"
-          formControlName="zipCode"
-        ></lib-input>
+        <mat-form-field appearance="outline">
+          <mat-label>CEP</mat-label>
+          <input matInput placeholder="00000-000" formControlName="zipCode" />
+          @if (getErrorMessage(residentialInfoForm, 'zipCode')) {
+          <mat-error
+            >{{ getErrorMessage(residentialInfoForm, 'zipCode') }}</mat-error
+          >
+          }
+        </mat-form-field>
 
-        <lib-input
-          label="Cidade"
-          placeholder="Digite sua cidade"
-          formControlName="city"
-        ></lib-input>
+        <mat-form-field appearance="outline">
+          <mat-label>Cidade</mat-label>
+          <input
+            matInput
+            placeholder="Digite sua cidade"
+            formControlName="city"
+          />
+          @if (getErrorMessage(residentialInfoForm, 'city')) {
+          <mat-error
+            >{{ getErrorMessage(residentialInfoForm, 'city') }}</mat-error
+          >
+          }
+        </mat-form-field>
 
-        <lib-input
-          label="Estado"
-          placeholder="Digite seu estado"
-          formControlName="state"
-        ></lib-input>
+        <mat-form-field appearance="outline">
+          <mat-label>Estado</mat-label>
+          <input
+            matInput
+            placeholder="Digite seu estado"
+            formControlName="state"
+          />
+          @if (getErrorMessage(residentialInfoForm, 'state')) {
+          <mat-error
+            >{{ getErrorMessage(residentialInfoForm, 'state') }}</mat-error
+          >
+          }
+        </mat-form-field>
 
-        <div>
-          <lib-button (buttonClickEvent)="previousStep()">Voltar</lib-button>
+        <div class="flex gap-4">
+          <lib-button variant="secondary" (buttonClickEvent)="previousStep()"
+            >Voltar</lib-button
+          >
           <lib-button (buttonClickEvent)="nextStep()">Próximo</lib-button>
         </div>
       </form>
@@ -94,27 +160,54 @@
       <form [formGroup]="professionalInfoForm" class="mt-4">
         <ng-template matStepLabel>Informações Profissionais</ng-template>
 
-        <lib-input
-          label="Profissão"
-          placeholder="Digite sua profissão"
-          formControlName="profession"
-        ></lib-input>
+        <mat-form-field appearance="outline">
+          <mat-label>Profissão</mat-label>
+          <input
+            matInput
+            placeholder="Digite sua profissão"
+            formControlName="profession"
+          />
+          @if (getErrorMessage(professionalInfoForm, 'profession')) {
+          <mat-error
+            >{{ getErrorMessage(professionalInfoForm, 'profession')
+            }}</mat-error
+          >
+          }
+        </mat-form-field>
 
-        <lib-input
-          label="Empresa"
-          placeholder="Digite sua empresa"
-          formControlName="company"
-        ></lib-input>
+        <mat-form-field appearance="outline">
+          <mat-label>Empresa</mat-label>
+          <input
+            matInput
+            placeholder="Digite sua empresa"
+            formControlName="company"
+          />
+          @if (getErrorMessage(professionalInfoForm, 'company')) {
+          <mat-error
+            >{{ getErrorMessage(professionalInfoForm, 'company') }}</mat-error
+          >
+          }
+        </mat-form-field>
 
-        <lib-input
-          inputType="number"
-          label="Salário"
-          placeholder="Digite seu salário"
-          formControlName="salary"
-        ></lib-input>
+        <mat-form-field appearance="outline">
+          <mat-label>Salário</mat-label>
+          <input
+            matInput
+            type="number"
+            placeholder="Digite seu salário"
+            formControlName="salary"
+          />
+          @if (getErrorMessage(professionalInfoForm, 'salary')) {
+          <mat-error
+            >{{ getErrorMessage(professionalInfoForm, 'salary') }}</mat-error
+          >
+          }
+        </mat-form-field>
 
-        <div>
-          <lib-button (buttonClickEvent)="previousStep()">Voltar</lib-button>
+        <div class="flex gap-4">
+          <lib-button variant="secondary" (buttonClickEvent)="previousStep()"
+            >Voltar</lib-button
+          >
           <lib-button (buttonClickEvent)="onSubmit()">Enviar</lib-button>
         </div>
       </form>

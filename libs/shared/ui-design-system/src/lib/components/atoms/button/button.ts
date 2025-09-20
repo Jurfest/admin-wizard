@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -9,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Button {
+  variant = input<'primary' | 'secondary'>('primary');
   buttonClickEvent = output<void>();
 
   sendClickEvent(): void {

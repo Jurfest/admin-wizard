@@ -1,6 +1,9 @@
+import { Button } from '@admin-wizard/ui-design-system';
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   viewChild,
 } from '@angular/core';
@@ -10,17 +13,14 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { MatStepperModule } from '@angular/material/stepper';
+import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatStepper } from '@angular/material/stepper';
-import { InputComponent, Button } from '@admin-wizard/ui-design-system';
+import { MatSelectModule } from '@angular/material/select';
+import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-register',
@@ -35,7 +35,6 @@ import { InputComponent, Button } from '@admin-wizard/ui-design-system';
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    InputComponent,
     Button,
   ],
   templateUrl: './register.html',
@@ -43,11 +42,11 @@ import { InputComponent, Button } from '@admin-wizard/ui-design-system';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Register {
-  private fb = inject(FormBuilder);
+  private readonly fb = inject(FormBuilder);
 
-  stepper = viewChild.required<MatStepper>('stepper');
+  readonly stepper = viewChild.required<MatStepper>('stepper');
 
-  personalInfoForm: FormGroup = this.fb.group({
+  readonly personalInfoForm = this.fb.group({
     fullName: ['', [Validators.required, Validators.minLength(2)]],
     dateOfBirth: ['', Validators.required],
     cpf: [
@@ -60,7 +59,7 @@ export class Register {
     ],
   });
 
-  residentialInfoForm: FormGroup = this.fb.group({
+  readonly residentialInfoForm = this.fb.group({
     address: ['', Validators.required],
     neighborhood: ['', Validators.required],
     zipCode: ['', [Validators.required, Validators.pattern(/^\d{5}-\d{3}$/)]],
@@ -68,11 +67,32 @@ export class Register {
     state: ['', Validators.required],
   });
 
-  professionalInfoForm: FormGroup = this.fb.group({
+  readonly professionalInfoForm = this.fb.group({
     profession: ['', Validators.required],
     company: ['', Validators.required],
     salary: ['', [Validators.required, Validators.min(0)]],
   });
+
+  private readonly fieldLabels = {
+    fullName: 'Nome completo',
+    cpf: 'CPF',
+    phone: 'Telefone',
+    address: 'Endereço',
+    neighborhood: 'Bairro',
+    zipCode: 'CEP',
+    city: 'Cidade',
+    state: 'Estado',
+    profession: 'Profissão',
+    company: 'Empresa',
+    salary: 'Salário',
+  } as const;
+
+  readonly isFormValid = computed(
+    () =>
+      this.personalInfoForm.valid &&
+      this.residentialInfoForm.valid &&
+      this.professionalInfoForm.valid
+  );
 
   nextStep(): void {
     this.stepper().next();
@@ -82,12 +102,27 @@ export class Register {
     this.stepper().previous();
   }
 
+  getErrorMessage(form: FormGroup, field: string): string {
+    const control = form.get(field);
+    if (!control?.errors || !control.touched) return '';
+
+    const fieldLabel =
+      (this.fieldLabels as Record<string, string>)[field] || field;
+
+    if (control.hasError('required')) return `${fieldLabel} é obrigatório`;
+    if (control.hasError('minlength')) {
+      const requiredLength = control.errors['minlength'].requiredLength;
+      return `${fieldLabel} deve ter pelo menos ${requiredLength} caracteres`;
+    }
+    if (control.hasError('pattern'))
+      return `${fieldLabel} tem formato inválido`;
+    if (control.hasError('min')) return `${fieldLabel} deve ser maior que zero`;
+
+    return '';
+  }
+
   onSubmit(): void {
-    if (
-      this.personalInfoForm.valid &&
-      this.residentialInfoForm.valid &&
-      this.professionalInfoForm.valid
-    ) {
+    if (this.isFormValid()) {
       const formData = {
         ...this.personalInfoForm.value,
         ...this.residentialInfoForm.value,
