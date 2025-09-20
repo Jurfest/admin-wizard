@@ -1,7 +1,7 @@
 <div class="register-container">
-  <h2 class="title">Registro</h2>
+  <h2 class="ml-6">Registro</h2>
 
-  <mat-stepper [linear]="false" #stepper>
+  <mat-stepper linear #stepper [orientation]="(stepperOrientation | async)!">
     <mat-step [stepControl]="personalInfoForm">
       <form [formGroup]="personalInfoForm" class="mt-4">
         <ng-template matStepLabel>Informações Pessoais</ng-template>

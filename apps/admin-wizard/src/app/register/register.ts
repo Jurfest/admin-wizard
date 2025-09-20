@@ -20,7 +20,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
-import { MatStepper, MatStepperModule } from '@angular/material/stepper';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import {
+  MatStepper,
+  MatStepperModule,
+  StepperOrientation,
+} from '@angular/material/stepper';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -43,6 +49,7 @@ import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 })
 export class Register {
   private readonly fb = inject(FormBuilder);
+  private breakpointObserver = inject(BreakpointObserver);
 
   readonly stepper = viewChild.required<MatStepper>('stepper');
 
@@ -93,6 +100,15 @@ export class Register {
       this.residentialInfoForm.valid &&
       this.professionalInfoForm.valid
   );
+
+  // UI control
+  stepperOrientation: Observable<StepperOrientation>;
+
+  constructor() {
+    this.stepperOrientation = this.breakpointObserver
+      .observe('(min-width: 65.625rem)')
+      .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
+  }
 
   nextStep(): void {
     this.stepper().next();
